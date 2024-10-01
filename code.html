@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entrer le Code d'Authentification</title>
+    <link rel="icon" href="images.jfif" type="image/x-icon">
+    <style>
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            background-color: #f0f4f8;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            color: #333;
+        }
+        h1 {
+            color: #0a64ad;
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 200px;
+            inputmode: numeric; /* Pour afficher le clavier numérique sur mobile */
+            pattern="[0-9]*"; /* Pour n'accepter que les chiffres */
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #0a64ad;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #084e80;
+        }
+        .message {
+            margin-top: 20px;
+            color: green;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Entrez le Code d'Authentification</h1>
+    <input type="text" id="authCode" placeholder="Code d authentification" required>
+    <button onclick="submitAuthCode()">Valider le code</button>
+    <p class="message" id="message"></p>
+
+<script>
+    async function submitAuthCode() {
+        const authCode = document.getElementById('authCode').value;
+        console.log('Code d\'authentification entré :', authCode); // Pour vérifier le code saisi
+
+        if (!authCode) {
+            document.getElementById('message').innerText = 'Veuillez entrer un code.';
+            return;
+        }
+
+        try {
+            const response = await fetch('code.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ code: authCode })
+            });
+
+            console.log('Réponse du serveur:', response); // Pour voir la réponse du serveur
+            const result = await response.json();
+            console.log('Résultat:', result); // Pour vérifier le résultat
+
+            if (result.success) {
+                document.getElementById('message').innerText = 'Code validé avec succès !';
+            } else {
+                document.getElementById('message').innerText = result.message || 'Erreur dans la validation du code.';
+            }
+        } catch (error) {
+            console.error('Erreur:', error); // Pour voir les erreurs de connexion
+            document.getElementById('message').innerText = 'Erreur de connexion au serveur.';
+        }
+    }
+</script>
+
+</body>
+</html>

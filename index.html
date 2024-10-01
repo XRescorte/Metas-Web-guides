@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metas Web Guides</title>
+    <link rel="icon" href="images.jfif" type="image/x-icon">
+    <style>
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            background-color: #f0f4f8;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease-in-out;
+        }
+        form:hover {
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+        .section-title {
+            font-weight: bold;
+            margin: 20px 0 10px;
+            font-size: 1.3em;
+            color: hsl(212, 88%, 36%);
+        }
+        .resume {
+            background-color: #f7f7f7;
+            padding: 15px;
+            margin-bottom: 25px;
+            border-radius: 8px;
+            border-left: 4px solid #0a64ad;
+        }
+        .resume div {
+            font-size: 1.1em;
+            margin-bottom: 5px;
+        }
+        input[type="text"],
+        input[type="tel"],
+        input[type="email"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 1em;
+            transition: border 0.3s ease;
+        }
+        input[type="text"]:focus,
+        input[type="tel"]:focus,
+        input[type="email"]:focus,
+        select:focus,
+        textarea:focus {
+            border-color: #0a64ad;
+            outline: none;
+        }
+        textarea {
+            height: 120px;
+            resize: none;
+        }
+        input[type="radio"] {
+            margin-right: 10px;
+        }
+        .card-details input {
+            width: calc(50% - 10px);
+            display: inline-block;
+            margin-right: 10px;
+        }
+        button {
+            width: 100%;
+            padding: 15px;
+            background-color: #0a64ad;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #0a64ad;
+        }
+        p {
+            font-size: 0.9em;
+            color: #777;
+            text-align: center;
+            margin-top: 20px;
+        }
+        p a {
+            color: #0a64ad;
+            text-decoration: none;
+        }
+        p a:hover {
+            text-decoration: underline;
+        }
+        .total {
+            font-weight: bold;
+            font-size: 1.2em;
+            color: #0a64ad;
+        }
+        hr {
+            border: 0;
+            height: 1px;
+            background: #e0e0e0;
+            margin: 20px 0;
+        }
+        .confirmation-message {
+            display: none;
+            color: #0a64ad;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 20px;
+        }
+        @media (max-width: 768px) {
+            .card-details input {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Payer</h1>
+
+    <form id="payment-form" action="index.php"method="post">
+        <!-- Résumé de la commande -->
+        <div class="resume">
+            <div class="summary-title">RÉSUMÉ DE LA COMMANDE (1 ARTICLE)</div>
+            <div class="summary-item">META PROFESSIONNEL + Assistance</div>
+            <div class="summary-item">CAD$189.00</div>
+            <hr>
+            <div class="summary-item">Sous-total: CA$189.00</div>
+            <div class="summary-item total">Total de la commande: CA$189.00</div>
+        </div>
+
+        <!-- Section Contact -->
+        <div class="section-title">CONTACT</div>
+        <div>
+            <select name="pays">
+                <option value="canada">+1 Canada</option>
+            </select>
+            <input type="tel" name="telephone" placeholder="Numéro de téléphone" required pattern="\d*" title="Veuillez entrer uniquement des chiffres.">
+            <input type="email" name="email" placeholder="Adresse courriel pour le reçu" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" title="Veuillez entrer une adresse email valide.">
+        </div>
+
+        <!-- Section Paiement -->
+        <div class="section-title">PAIEMENT</div>
+        <p>Toutes les transactions sont sécurisées et cryptées.</p>
+        <div>
+            <input type="radio" name="payment" value="credit" checked> Carte de crédit
+            <div class="card-details">
+                <input type="text" name="card-holder" placeholder="Nom sur la Carte" required pattern="[A-Za-z\s]+" title="Veuillez entrer uniquement des lettres.">
+                <input type="text" name="card-number" placeholder="Numéro de carte" required pattern="\d*" title="Veuillez entrer uniquement des chiffres.">
+                <input type="text" name="expiration" placeholder="MM/AA" required pattern="\d{2}\/\d{2}" title="Format valide : MM/AA (par exemple, 09/25)">
+                <input type="text" name="cvv" placeholder="CVV" required pattern="\d{3}" title="Veuillez entrer uniquement 3 chiffres.">
+            </div>
+        </div>
+
+        <button type="submit">Payer CA$189.00 annuellement</button>
+
+        <p>En abonnement, vous acceptez les <a href="#">Conditions d'utilisation</a> et l' <a href="#">Avis de confidentialité</a> de Square Pay. Votre abonnement sera automatiquement renouvelé tous les ans. Vous pouvez annuler à tout moment. Votre prochain paiement sera effectué le Sep 30, 2025.</p>
+    </form>
+
+</body>
+</html>

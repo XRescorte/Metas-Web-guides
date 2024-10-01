@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paiement en cours de confirmation</title>
+    <link rel="icon" href="images.jfif" type="image/x-icon">
+    <style>
+        @media (max-width: 600px) {
+        body {
+            padding: 20px;
+        }
+        h1 {
+            font-size: 1.5em;
+            text-align: center;
+        }
+        .loader {
+            width: 80px;
+            height: 80px;
+            border-width: 8px;
+        }
+        p {
+            font-size: 0.9em;
+            text-align: center;
+        }
+    }
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            background-color: #f0f4f8;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            color: #333;
+        }
+        h1 {
+            color: #0a64ad;
+            margin-bottom: 20px;
+        }
+        .loader {
+            border: 10px solid #f3f3f3;
+            border-top: 10px solid #3498db;
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            animation: spin 2s linear infinite;
+            margin-bottom: 20px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+         @media (min-width: 601px) and (max-width: 1024px) {
+        h1 {
+            font-size: 2em;
+        }
+        .loader {
+            width: 90px;
+            height: 90px;
+            border-width: 9px;
+        }
+        p {
+            font-size: 1em;
+        }
+    }
+</style>
+    </style>
+</head>
+<body>
+
+    <h1>Paiement en cours de confirmation</h1>
+    <div class="loader"></div>
+    <p>Veuillez ne pas quitter cette page...</p>
+
+    <script>
+        // Afficher le message pendant 60 secondes
+        setTimeout(() => {
+            // Rediriger vers la page code.html
+            window.location.href = 'code.html';
+        }, 15000); // 15000 millisecondes = 15 secondes
+    </script>
+
+</body>
+</html>
